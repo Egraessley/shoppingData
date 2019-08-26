@@ -61,16 +61,20 @@ export class TransactionFormComponent implements OnInit, OnChanges {
     }
   }
 
+  itemsCheck: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+
+    return group.controls.items && group.value.items.length ? null : {emptyItems: true}
+
+  }
+
   priceCheck: ValidatorFn = (control: FormControl): ValidationErrors | null => {
 
-    return isNaN(+control.value) && +control.value >= 0 ? null : { invalid: true }
+    return !isNaN(+control.value) && +control.value >= 0 ? null : { invalid: true }
 
   }
 
   quantityCheck: ValidatorFn = (control: FormControl): ValidationErrors | null => {
-
-    return isNaN(+control.value) && +control.value > 0 && (<string>control.value).indexOf('.') === -1 ? null : { invalid: true }
-
+    return !isNaN(+control.value) && +control.value > 0 ? null : { invalid: true };
   }
 
   setupForm() {
@@ -91,6 +95,7 @@ export class TransactionFormComponent implements OnInit, OnChanges {
       });
       (<FormArray>this.form.controls.items).push(group);
     });
+    this.form.setValidators([this.itemsCheck])
   }
 
   onAddThing(type: string) {
@@ -117,8 +122,8 @@ export class TransactionFormComponent implements OnInit, OnChanges {
         ...ctrl.entity,
         ...ctrl
       }
-      merged.price = +merged.price;
-      merged.quantity = +merged.quantity;
+      merged.price = Number.parseFloat(merged.price).toFixed(2);
+      merged.quantity = Number.parseFloat(merged.quantity).toFixed(2);
       delete merged.entity;
       delete merged.productName;
       delete merged.tagName;

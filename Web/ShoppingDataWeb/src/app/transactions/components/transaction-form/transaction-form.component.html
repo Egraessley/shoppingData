@@ -1,5 +1,5 @@
-<button class="btn btn-primary" *ngIf="transaction && transaction.id !==0" (click)="onSave()">Save</button>
-<button class="btn btn-primary" *ngIf="transaction && transaction.id ===0" (click)="onCreate()">Create</button>
+<button class="btn btn-primary" *ngIf="transaction && transaction.id !==0" [disabled]="form.invalid" (click)="onSave()">Save</button>
+<button class="btn btn-primary" *ngIf="transaction && transaction.id ===0" [disabled]="form.invalid" (click)="onCreate()">Create</button>
 <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
 <form [formGroup]="form">
   <div class="input-group date">
