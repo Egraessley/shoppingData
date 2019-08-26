@@ -35,6 +35,7 @@
       <input class="form-control" formControlName="tagName" [typeahead]="filteredTags" typeaheadOptionField="name"
       (typeaheadOnSelect)="addTag($event)">
     </div>
+    <button (click)="onAddThing('tag')">Add Tag</button>
   </form>
   <table>
     

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as fromModels from '../../../shared/models';
 import { FormGroup } from '@angular/forms';
 
@@ -33,6 +33,9 @@ export class OrderFormComponent implements OnInit {
 
   @Input()
   types: fromModels.TypeModel[] = [];
+
+  @Output()
+  addThing = new EventEmitter<string>();
 
   constructor() { }
 
@@ -71,6 +74,10 @@ export class OrderFormComponent implements OnInit {
 
   get f(): { [key: string]: any } {
     return this.form.controls;
+  }
+
+  onAddThing(type: string) {
+    this.addThing.emit(type);
   }
 
 }
