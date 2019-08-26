@@ -9,6 +9,13 @@ import { FormGroup } from '@angular/forms';
 })
 export class OrderFormComponent implements OnInit {
 
+  @Input() filters = {
+    brand: null,
+    section: null,
+    name: '',
+    type: null,
+  }
+
   @Input()
   form: FormGroup;
   
@@ -46,6 +53,15 @@ export class OrderFormComponent implements OnInit {
     value.push(tag);
     this.f.tags.patchValue(value);
     this.f.tagName.patchValue('');
+  }
+
+  get filteredProducts(): fromModels.ProductListModel[] {
+    return this.products.filter(product=>(product.id === +this.form.value.productId) || (
+                                    (this.filters.section === null || product.sectionId === +this.filters.section) &&
+                                    (this.filters.brand === null || product.brandId === +this.filters.brand) &&
+                                    (this.filters.type === null || product.typeId === +this.filters.type) &&
+                                    (this.filters.name === '' || product.name.toLowerCase().includes(this.filters.name.toLowerCase()))
+                                    ));
   }
 
   get filteredTags(): fromModels.TagModel[] {

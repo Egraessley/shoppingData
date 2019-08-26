@@ -1,8 +1,11 @@
 <form [formGroup]="form">
     <div class="form-group">
-      <label for="productId" class="control-label" >Product</label>                  
-      <input class="form-control" formControlName="productName" [typeahead]="products" typeaheadOptionField="name"
-      (typeaheadOnSelect)="typeAheadPatchValue($event,'productId')">
+      <label  class="control-label" i18n="@@nameLabel">Product
+        <select  class="form-control" formControlName="productId">
+          <option [value]="null">Select one</option>
+          <option *ngFor="let product of filteredProducts" [value]="product.id">{{product.name}}</option>
+        </select>
+      </label>
       <div ngxErrors="productId">
         <div ngxError="required" [when]="['dirty', 'touched']">
           <span class="validation-error-message">productId is required</span>

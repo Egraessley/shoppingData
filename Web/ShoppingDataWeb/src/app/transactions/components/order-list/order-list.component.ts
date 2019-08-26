@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormArray, FormGroup, FormControl } from '@angular/forms';
+import { FormArray, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import * as fromModels from '../../../shared/models';
 
 @Component({
@@ -33,7 +33,17 @@ export class OrderListComponent implements OnInit {
   @Output()
   removeOrder = new EventEmitter<number>();
 
-  constructor() { }
+  @Output()
+  addThing = new EventEmitter<string>();
+
+  filterForm = this.fb.group({
+    name: [''],
+    section: [null],
+    type: [null],
+    brand: [null]
+  });
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -45,6 +55,10 @@ export class OrderListComponent implements OnInit {
   removeTag(control: FormGroup,id: number) {
     let value = control.value.tags.filter(x=>x.id !== id);
     control.controls.tags.patchValue(value);
+  }
+
+  get filters() {
+    return this.filterForm.value;
   }
 
 
@@ -59,6 +73,17 @@ export class OrderListComponent implements OnInit {
       product = this.products.find(x=>x.id === +itemControl.value.productId);
     }
     return product ? product.name : 'none'
+  }
+
+  onAddThing(type: string) {
+    this.addThing.emit(type);
+  }
+
+  onClearFilter() {
+    this.filterForm.controls.name.patchValue('');
+    this.filterForm.controls.brand.patchValue(null);
+    this.filterForm.controls.section.patchValue(null);
+    this.filterForm.controls.type.patchValue(null);
   }
 
 }

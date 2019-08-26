@@ -25,9 +25,10 @@ import { TransactionFormComponent } from './components/transaction-form/transact
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { NgxErrorsModule } from '../ngxerrors/ngxerrors.module';
+import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 
 @NgModule({
-  declarations: [TransactionItemComponent, TransactionComponent, TransactionListComponent, TransactionFormComponent, OrderListComponent, OrderFormComponent],
+  declarations: [TransactionItemComponent, TransactionComponent, TransactionListComponent, TransactionFormComponent, OrderListComponent, OrderFormComponent, ProductFilterComponent],
   imports: [
     CommonModule,
     TransactionsRoutingModule,

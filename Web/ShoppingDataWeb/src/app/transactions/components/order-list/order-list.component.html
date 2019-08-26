@@ -26,9 +26,10 @@
     </tr>
     <tr *ngIf="open === i">
       <td colspan="4">
-        <sd-order-form [brands]="brands" [types]="types" [sections]="sections" [tags]="tags" [products]="products"
+        <sd-order-form [filters]="filters" [brands]="brands" [types]="types" [sections]="sections" [tags]="tags" [products]="products"
           [form]="itemControl"></sd-order-form>
       </td>
     </tr>
   </ng-container>
 </table>
+<sd-product-filter [brands]="brands" [types]="types" [sections]="sections" [form]="filterForm" (addThing)="onAddThing($event)" (clearFilter)="onClearFilter()"></sd-product-filter>
