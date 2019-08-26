@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left" i18n="@@workTypeHeading">{{title}} Product</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label class="control-label" i18n="@@nameLabel">Product name
+        <input id="name" class="form-control" formControlName="name" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label  class="control-label" i18n="@@nameLabel">Brand
+        <select  class="form-control" formControlName="brandId">
+          <option [value]="null">Select one</option>
+          <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+        </select>
+      </label>
+      <div class="form-group">
+        <label class="control-label" i18n="@@nameLabel">Section
+          <select  class="form-control" formControlName="sectionId">
+            <option [value]="null">Select one</option>
+            <option *ngFor="let section of sections" [value]="section.id">{{section.name}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="control-label" i18n="@@nameLabel">Type
+          <select  class="form-control" formControlName="typeId">
+            <option [value]="null">Select one</option>
+            <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="modal-footer">
+    <button type="button" [disabled]="form.invalid" class="button" (click)="onSave()">{{buttonText}}</button>
+    <button type="button" class="button-gray" (click)="bsModalRef.hide()" i18n="@@cancelButton">Cancel</button>
+  </div>

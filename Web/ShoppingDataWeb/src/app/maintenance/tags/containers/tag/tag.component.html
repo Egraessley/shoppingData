@@ -1,0 +1,19 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5 i18n="@@activitiesHeading">Tags</h5>
+          <div class="ibox-content">
+            <div class="ibox-tools grid-add-button">
+              <button class="btn btn-primary" (click)="onCreate()" i18n="@@addButton">Add</button>
+            </div>
+            <div class="table-responsive">
+              <sd-tag-list [tags]="tags$ | async" (delete)="onDelete($event)" (edit)="onEdit($event)"></sd-tag-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

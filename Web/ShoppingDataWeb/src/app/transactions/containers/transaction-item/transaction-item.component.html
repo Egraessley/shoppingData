@@ -1,0 +1,12 @@
+<sd-transaction-form
+[transaction]="transaction$ | async"
+[brands]="brands"
+[types]="types"
+[sections]="sections"
+[tags]="tags"
+[products]="products"
+(add)="onAddThing($event)"
+(save)="onSave($event)"
+(create)="onCreate($event)"
+(onCancel)="onCancel()"
+></sd-transaction-form>

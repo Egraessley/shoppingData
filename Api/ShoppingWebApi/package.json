@@ -1,0 +1,48 @@
+{
+  "name": "shoppingwebapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "version": "echo $npm_package_version"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "del": "^5.0.0",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.1.0",
+    "express-print-routes": "^1.0.0",
+    "express-remove-route": "^1.0.0",
+    "externalip": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-live-server": "0.0.31",
+    "gulp-run-command": "0.0.9",
+    "gulp-typescript": "^3.2.4",
+    "http": "^0.0.0",
+    "jsonwebtoken": "^8.1.1",
+    "moment": "^2.20.1",
+    "mssql": "^4.1.0",
+    "mysql": "^2.12.0",
+    "node-geocoder": "^3.21.1",
+    "node-gyp": "^3.8.0",
+    "node-where": "^1.1.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "simple-ssh": "^1.0.0",
+    "socket.io": "^2.0.4",
+    "socketio-jwt": "^4.5.0",
+    "typeorm": "^0.2.7",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.0",
+    "@types/jsonwebtoken": "^7.2.5",
+    "@types/node": "^8.10.36",
+    "@types/socket.io": "^1.4.29",
+    "run-sequence": "^2.2.0",
+    "typescript": "^2.8.3"
+  }
+}

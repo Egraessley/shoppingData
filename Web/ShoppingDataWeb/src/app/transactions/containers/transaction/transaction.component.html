@@ -1,0 +1,19 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Transactions</h5>
+            <div class="ibox-content">
+              <div class="ibox-tools grid-add-button">
+                <button class="btn btn-primary" (click)="onCreate()" i18n="@@addButton">Add</button>
+              </div>
+              <div class="table-responsive">
+                <sd-transaction-list [transactions]="transactions$ | async" (edit)="onEdit($event)"></sd-transaction-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

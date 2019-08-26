@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left" i18n="@@workTypeHeading">{{title}} Type</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="name" class="control-label" i18n="@@nameLabel">Type Name</label>
+      <input name="description" id="name" class="form-control" formControlName="name" />
+    </div>
+  </form>  
+  <div class="modal-footer">
+    <button type="button" [disabled]="form.invalid" class="button" (click)="onSave()">{{buttonText}}</button>
+    <button type="button" class="button-gray" (click)="bsModalRef.hide()" i18n="@@cancelButton">Cancel</button>
+  </div>

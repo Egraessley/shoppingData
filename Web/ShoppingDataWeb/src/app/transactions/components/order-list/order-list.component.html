@@ -1,0 +1,34 @@
+<table>
+  <tr>
+    <th></th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+    <th>Tags</th>
+    <th></th>
+  </tr>
+  <ng-container *ngFor="let itemControl of itemControls; let i = index;">
+    <tr>
+      <td>
+        <button *ngIf="open !== i" class="btn btn-primary" (click)="open = i"><i class="fa fa-caret-right"></i></button>
+        <button *ngIf="open === i" class="btn btn-primary" (click)="open = null"><i class="fa fa-caret-down"></i></button>
+      </td>
+      <td>{{getProductName(itemControl)}}</td>
+      <td>{{itemControl.value.quantity}}</td>
+      <td>{{itemControl.value.price}}</td>
+      <td>
+          <ul>
+            <li *ngFor="let tag of itemControl.value.tags"><i class="fa fa-times" style="cursor: pointer; padding-right: 5px;"
+                (click)="removeTag(itemControl,tag.id)"></i>{{tag.name}}</li>
+          </ul>
+      </td>
+      <td><button class="btn btn-primary" (click)="onRemoveOrder(i)"><i class="fa fa-trash"></i></button></td>
+    </tr>
+    <tr *ngIf="open === i">
+      <td colspan="4">
+        <sd-order-form [brands]="brands" [types]="types" [sections]="sections" [tags]="tags" [products]="products"
+          [form]="itemControl"></sd-order-form>
+      </td>
+    </tr>
+  </ng-container>
+</table>

@@ -1,0 +1,14 @@
+<button class="btn btn-primary" *ngIf="transaction && transaction.id !==0" (click)="onSave()">Save</button>
+<button class="btn btn-primary" *ngIf="transaction && transaction.id ===0" (click)="onCreate()">Create</button>
+<button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+<form [formGroup]="form">
+  <div class="input-group date">
+    <span class="input-group-addon" (click)="dp.toggle()"><i class="fa fa-calendar"></i></span><input type="text"
+      placeholder="Transaction Date..." class="form-control" bsDatepicker formControlName="date" readonly
+      #dp="bsDatepicker">
+  </div>
+</form>
+<button class="btn btn-primary" (click)="addOrder()">Add Item</button>
+<sd-order-list [parentForm]="form.controls.items" [brands]="brands" [types]="types" [sections]="sections" [tags]="tags"
+  [products]="products" (edit)="removeOrder($event)" (add)="onAddThing($event)" (removeOrder)="onRemoveOrder($event)">
+</sd-order-list>

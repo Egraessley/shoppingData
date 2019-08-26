@@ -1,0 +1,531 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~ag-grid/dist/styles/ag-grid.css';
+@import '~ag-grid/dist/styles/ag-theme-balham.css';
+@import '~font-awesome/css/font-awesome.css';
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+@import './colors.scss';
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.error {
+  color: red;
+}
+
+.main-content {
+  margin-left: 200px;
+  margin-top: 100px;
+}
+
+.container {
+  padding-top: 40px;
+}
+
+#sidebar {
+  width: 200px;
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  background: $dark-blue;
+  color: $white;
+  transition: all 0.3s;
+}
+
+#sidebar a {
+  display: block;
+  color: $white;
+  padding: 20px;
+  text-decoration: none;
+}
+
+#sidebar li.active {
+  background-color: $medium-blue;
+  color: $white;
+}
+
+#sidebar ul.second-level {
+  margin-left: 20px;
+}
+
+#sidebar a:hover:not(active) {
+  background-color: $medium-blue;
+  color: $white;
+}
+
+.topnav {
+  background-color: $dark-blue;
+  position: fixed;
+  overflow: hidden;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  padding: 28px 28px 28px 28px;
+  color: $white;
+}
+
+.topnav a {
+  color: $white;
+}
+
+.topnav a:visited {
+  color: $white;
+}
+
+.topnav-header {
+  float: left;
+}
+
+.topnav nav {
+  float: right;
+  display: block;
+  background-color: $medium-blue;
+  color: $white;
+  background-color: $medium-blue;
+  border: none;
+  //border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.topnav i {
+  color: $white;
+}
+
+body {
+  font-size: 15px;
+}
+
+.button {
+  background-color: $medium-blue;
+  border: none;
+  //border-radius: 8px;
+  color: $white;
+  padding: 8px 16px;
+  margin: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button.big {
+  float: center;
+  font-size: 30px;
+  margin: 20px;
+  margin-bottom: 40px;
+}
+
+.button.clear {
+  margin-left: 0px;
+}
+
+.button.test {
+  padding: 9px 18px;
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-right: 0px;
+}
+
+.button.space {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button.bottom {
+  margin-bottom: 40px;
+  margin-top: 40px;
+  font-size: 25px;
+}
+
+.button-gray {
+  background-color: $medium-gray;
+  border: none;
+  //border-radius: 8px;
+  color: $white;
+  padding: 8px 16px;
+  margin: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: $hover-blue;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: $light-gray;
+  color: $medium-gray;
+}
+
+.button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.button-gray:disabled {
+  background-color: $light-gray;
+  color: $medium-gray;
+}
+
+.button-gray:disabled:hover {
+  cursor: not-allowed;
+}
+
+.button-gray:hover {
+  background-color: $hover-gray;
+  cursor: pointer;
+}
+
+.button.leftMargin {
+  margin-left: 10px;
+}
+
+.nav-item {
+  background-color: $dark-blue;
+}
+
+.nav-item:active {
+  border-radius: 0px;
+  color: $font-blue;
+}
+
+.nav-link {
+  color: $white;
+}
+
+.nav-link:hover {
+  color: $medium-blue;
+}
+
+.gridStyle {
+  width: 100%;
+  height: 500px;
+}
+
+.ag-theme-balham .ag-header {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.ag-theme-balham .ag-cell {
+  font-size: 15px;
+  font-family: 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #676a6c;
+}
+
+.gridRow {
+  margin-bottom: 20px;
+}
+
+.drag-border {
+  border: none;
+}
+
+.drag-hint-border {
+  border: none;
+}
+
+.drag-transit {
+  border: none;
+}
+
+.form-group {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gray-bg {
+  padding: 10%;
+  color: $white;
+  background-color: $dark-blue;
+  margin: 20px;
+}
+
+.box {
+  margin: 5%;
+}
+
+.fa.fa-trash.fa-5x {
+  color: $dark-blue;
+  padding: 20px;
+}
+
+input[type='radio'].boxInput {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.boxLabel {
+  color: $dark-blue;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 20px;
+}
+
+.boxLabel.group {
+  padding: 20px 20px 5px 0px;
+}
+
+input[type='radio'].boxInput + label {
+  color: $medium-blue;
+  background: $dark-blue;
+}
+
+input[type='radio']:checked.boxInput + label {
+  color: $dark-blue;
+  background: $medium-blue;
+}
+
+.radio-group {
+  display: inline-block;
+  margin: 10px;
+  margin-left: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.radio-group.grades {
+  margin-top: 40px;
+}
+
+input[type='radio'].corrAnswer {
+  position: absolute;
+  color: $dark-blue;
+  background: $medium-blue;
+  border: 7px solid $medium-blue;
+  height: 25px;
+  width: 25px;
+  margin-left: 10px;
+  margin-top: 4px;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+input[type='radio'].corrAnswer:checked {
+  color: $medium-blue;
+  background: $dark-blue;
+}
+
+.fa-minus {
+  margin: 10px;
+}
+
+.answerLabel {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+input[type='checkbox'] {
+  color: $dark-blue;
+  background: $medium-blue;
+  border: 4px solid $medium-blue;
+  height: 15px;
+  width: 15px;
+  margin-right: 4px;
+  -webkit-appearance: none;
+}
+
+input[type='checkbox']:checked {
+  color: $medium-blue;
+  background: $dark-blue;
+}
+
+.checkLabel {
+  margin: 8px;
+}
+
+.row.insertedQuestions {
+  margin-left: 5px;
+}
+
+.indQuestion {
+  padding: 10px;
+  display: block;
+  background-color: $light-gray;
+  color: $font-blue;
+}
+
+.outerQuestion {
+  display: block;
+  background-color: $dark-blue;
+  color: $white;
+  padding: 15px;
+}
+
+.answer-input {
+  font-size: 20px;
+}
+
+form {
+  margin-left: 10px;
+}
+
+.grading-format {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.col-12.answer {
+  margin: 10px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.fa-close {
+  color: $dark-red;
+}
+
+.fa-check {
+  color: green;
+}
+
+.score {
+  text-align: center;
+  padding: 10px;
+  background-color: $dark-blue;
+  color: $white;
+  font-size: 24px;
+}
+
+.col-12.heading {
+  padding-left: 0px;
+  margin-bottom: 5px;
+}
+
+.button-group {
+  margin: 0px 0px 0px 20px;
+}
+
+.filter-box {
+  border: solid 1px;
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.filter-box.withMargin {
+  margin-left: 20px;
+}
+
+.gray-background {
+  background-color: $light-gray;
+}
+
+.nav.nav-tabs {
+  background-color: $light-gray;
+}
+
+.landingBox {
+  display: block;
+  background-color: $dark-blue;
+  color: $white;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-top: 10%;
+  height: 75%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+b {
+  margin-left: 10px;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: $medium-blue;
+}
+
+input[type='radio'].sessions:checked + label {
+  color: $medium-blue;
+  border: solid, 10px, $medium-blue;
+}
+
+.fa.fa-calendar {
+  margin: 10px;
+}
+
+.form-group.sessions-group {
+  margin-left: 20px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+td {
+  padding-bottom: 0px;
+}
+
+.yearFilter {
+  width: 300px;
+  margin-left: 20px;
+  padding-top: 15px;
+}
+
+.criteriaSpace {
+  margin-top: 30px;
+}
+
+.imgSpace {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.padImgTest {
+  padding-bottom: 30px;
+  width: 400px;
+}
+
+.padImg {
+  padding-bottom: 30px;
+  //width: 600px;
+  width: 100%;
+}
+
+textarea {
+  width: 400px;
+  height: 200px;
+  padding: 10px;
+  resize: none;
+}
+
+.sessionLabel {
+  margin-right: 10px;
+}
+
+.progBarHeading {
+  width: 100%;
+  padding: 20px;
+}
+
+.progress-bar.progress-bar-info.bg-info {
+  background-color: $medium-blue !important;
+}
+
+.progress-bar.progress-bar-success.bg-success {
+  background-color: $dark-blue !important;
+}
+
+.homePage {
+  height: 300px;
+  font-size: 100px;
+  margin-top: 150px;
+  padding: 60px;
+}
+

@@ -1,0 +1,28 @@
+# generated distribution output
+dist/
+
+# environment files
+.env
+ormconfig.json
+
+# data folder
+data/
+
+# docker configuration
+docker-compose.yml
+
+# docs
+doc
+
+# node_modules
+node_modules
+
+# IDE files
+.idea
+
+# local uploads
+localUploads/*
+!localUploads/defaults
+
+#ds files
+.DS_STORE
