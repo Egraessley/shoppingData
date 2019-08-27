@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
-  selector: 'lps-active-column',
+  selector: 'sd-active-column',
   templateUrl: './active-column.component.html',
   styleUrls: ['./active-column.component.scss'],
 })

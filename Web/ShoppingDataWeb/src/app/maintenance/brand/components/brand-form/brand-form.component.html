@@ -5,13 +5,13 @@
   </button>
 </div>
 <div class="modal-body">
-  <form [formGroup]="form">
+  <form id="this-form" [formGroup]="form" (submit)="onSave()">
     <div class="form-group">
       <label for="name" class="control-label" i18n="@@nameLabel">Brand Name</label>
       <input name="description" id="name" class="form-control" formControlName="name" />
     </div>
   </form>  
   <div class="modal-footer">
-    <button type="button" [disabled]="form.invalid" class="button" (click)="onSave()">{{buttonText}}</button>
+    <button for="this-form" type="submit" [disabled]="form.invalid" class="button" (click)="onSave()">{{buttonText}}</button>
     <button type="button" class="button-gray" (click)="bsModalRef.hide()" i18n="@@cancelButton">Cancel</button>
   </div>

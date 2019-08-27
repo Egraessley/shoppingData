@@ -3,7 +3,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'lps-friendly-date',
+  selector: 'sd-friendly-date',
   templateUrl: './friendly-date.component.html',
   styleUrls: ['./friendly-date.component.scss'],
 })

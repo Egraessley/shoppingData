@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
-  selector: 'lps-short-date',
+  selector: 'sd-short-date',
   templateUrl: './short-date.component.html',
   styleUrls: ['./short-date.component.scss'],
 })

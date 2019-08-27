@@ -26,3 +26,5 @@ localUploads/*
 
 #ds files
 .DS_STORE
+
+ormconfig.json.local
