@@ -15,14 +15,14 @@
       <label  class="control-label" i18n="@@nameLabel">Brand
         <select  class="form-control" formControlName="brandId">
           <option [ngValue]="null">Select one</option>
-          <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+          <option *ngFor="let brand of brands" [ngValue]="brand.id">{{brand.name}}</option>
         </select>
       </label>
       <div class="form-group">
         <label class="control-label" i18n="@@nameLabel">Section
           <select  class="form-control" formControlName="sectionId">
             <option [ngValue]="null">Select one</option>
-            <option *ngFor="let section of sections" [value]="section.id">{{section.name}}</option>
+            <option *ngFor="let section of sections" [ngValue]="section.id">{{section.name}}</option>
           </select>
         </label>
       </div>
@@ -30,7 +30,7 @@
         <label class="control-label" i18n="@@nameLabel">Type
           <select  class="form-control" formControlName="typeId">
             <option [ngValue]="null">Select one</option>
-            <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+            <option *ngFor="let type of types" [ngValue]="type.id">{{type.name}}</option>
           </select>
         </label>
       </div>

@@ -117,19 +117,21 @@ export class TransactionFormComponent implements OnInit, OnChanges {
 
   get modelFromForm(): TransactionModel {
     let value = this.form.getRawValue();
+    console.log(value);
     let items = value.items.map(ctrl => {
       let merged = {
         ...ctrl.entity,
         ...ctrl
       }
-      merged.price = Number.parseFloat(merged.price).toFixed(2);
-      merged.quantity = Number.parseFloat(merged.quantity).toFixed(2);
+      merged.price = +Number.parseFloat(merged.price).toFixed(2);
+      merged.quantity = +Number.parseFloat(merged.quantity).toFixed(2);
+      console.log(merged);
       delete merged.entity;
       delete merged.productName;
       delete merged.tagName;
       return merged
     });
-
+    console.log(items);
     return {
       ...this.transaction,
       ...value,

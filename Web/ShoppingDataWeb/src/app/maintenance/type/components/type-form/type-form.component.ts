@@ -26,7 +26,7 @@ export class TypeFormComponent implements OnInit {
 
 
   get exists(): boolean {
-    return this.type ? true : false;
+    return this.type.id > 0;
   }
 
   onSave() {

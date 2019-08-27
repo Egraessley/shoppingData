@@ -26,7 +26,7 @@ export class BrandFormComponent implements OnInit {
 
 
   get exists(): boolean {
-    return this.brand ? true : false;
+    return this.brand.id > 0;
   }
 
   onSave() {

@@ -30,8 +30,8 @@ export class transactions1566656253270 implements MigrationInterface {
                 columns: [
                     new TableColumn({name: 'id',generationStrategy:'increment', type: 'int',isPrimary: true,isGenerated: true,isUnique: true,isNullable: false}),
                     new TableColumn({name: 'date',type: 'datetime',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false, default: 'CURRENT_TIMESTAMP'}),
-                    new TableColumn({name: 'price',type: 'decimal',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false,default:0.00}),
-                    new TableColumn({name: 'quantity', type: 'decimal',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false}),
+                    new TableColumn({name: 'price',type: 'float',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false,default:0.00}),
+                    new TableColumn({name: 'quantity', type: 'float',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false}),
                     new TableColumn({name: 'productId', type: 'int',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false}),
                     new TableColumn({name: 'transactionId', type: 'int',isPrimary: false,isGenerated: false,isUnique: false,isNullable: false}),
                 ]

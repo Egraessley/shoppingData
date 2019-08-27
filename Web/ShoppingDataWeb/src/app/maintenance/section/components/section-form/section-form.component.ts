@@ -26,7 +26,7 @@ export class SectionFormComponent implements OnInit {
 
 
   get exists(): boolean {
-    return this.section ? true : false;
+    return this.section.id > 0;
   }
 
   onSave() {

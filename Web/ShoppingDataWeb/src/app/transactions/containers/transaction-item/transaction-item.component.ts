@@ -130,11 +130,13 @@ export class TransactionItemComponent implements OnInit {
 
 
   onSave(transaction: fromModels.TransactionModel) {
+    console.log(transaction);
     this.store.dispatch(new fromTransactionStore.TransactionItemSaved({ transaction }));
   }
 
 
   onCreate(transaction: fromModels.TransactionModel) {
+    console.log(transaction);
     this.store.dispatch(new fromTransactionStore.TransactionItemCreated({ transaction }));
   }
 

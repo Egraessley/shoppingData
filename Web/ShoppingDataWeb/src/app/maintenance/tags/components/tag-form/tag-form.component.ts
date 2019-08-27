@@ -26,7 +26,7 @@ export class TagFormComponent implements OnInit {
 
 
   get exists(): boolean {
-    return this.tag ? true : false;
+    return this.tag.id > 0;
   }
 
   onSave() {

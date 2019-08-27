@@ -93,8 +93,8 @@ export const mappers = {
         async productUpdateViewToProduct(product: fromViews.ProductUpdateView): Promise<fromModels.Products> {
             try {
                 const brand = await getConnection().getRepository(fromModels.Brands).findOne(product.brandId);
-                const section = await getConnection().getRepository(fromModels.Sections).findOne(product.brandId);
-                const type = await getConnection().getRepository(fromModels.Types).findOne(product.brandId);
+                const section = await getConnection().getRepository(fromModels.Sections).findOne(product.sectionId);
+                const type = await getConnection().getRepository(fromModels.Types).findOne(product.typeId);
                 return {
                     id: product.id,
                     name: product.name,

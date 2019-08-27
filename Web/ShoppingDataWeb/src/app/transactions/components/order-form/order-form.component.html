@@ -2,8 +2,8 @@
     <div class="form-group">
       <label  class="control-label" i18n="@@nameLabel">Product
         <select  class="form-control" formControlName="productId">
-          <option [value]="null">Select one</option>
-          <option *ngFor="let product of filteredProducts" [value]="product.id">{{product.name}}</option>
+          <option [ngValue]="null">Select one</option>
+          <option *ngFor="let product of filteredProducts" [ngValue]="product.id">{{product.name}}</option>
         </select>
       </label>
       <div ngxErrors="productId">

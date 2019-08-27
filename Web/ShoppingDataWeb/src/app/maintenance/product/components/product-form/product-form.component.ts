@@ -34,7 +34,7 @@ export class ProductFormComponent implements OnInit {
 
 
   get exists(): boolean {
-    return this.product ? true : false;
+    return this.product.id > 0;
   }
 
   onSave() {
