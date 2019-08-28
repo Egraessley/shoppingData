@@ -25,6 +25,8 @@ export class ProductListComponent implements OnInit {
       field: 'id',
       cellRendererFramework: GridButtonsComponent,
       autoHeight: true,
+      width: 100,
+      cellClass: 'table-header'
     },
     {
       headerName: 'Product',
@@ -54,6 +56,7 @@ export class ProductListComponent implements OnInit {
       componentParent: this,
     },
     rowHeight: 40,
+    headerHeight: 52,
     onGridReady: () => {
       this.gridOptions.api.sizeColumnsToFit();
     },

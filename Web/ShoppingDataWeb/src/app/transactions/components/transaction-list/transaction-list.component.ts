@@ -47,6 +47,7 @@ export class TransactionListComponent implements OnInit {
       componentParent: this,
     },
     rowHeight: 40,
+    headerHeight: 52,
     onGridReady: () => {
       this.gridOptions.api.sizeColumnsToFit();
     },

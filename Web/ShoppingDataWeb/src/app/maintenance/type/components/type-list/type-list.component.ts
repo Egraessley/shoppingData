@@ -24,6 +24,7 @@ export class TypeListComponent implements OnInit {
       field: 'id',
       cellRendererFramework: GridButtonsComponent,
       autoHeight: true,
+      width: 50,
     },
     {
       headerName: 'Type',
@@ -38,6 +39,7 @@ export class TypeListComponent implements OnInit {
       componentParent: this,
     },
     rowHeight: 40,
+    headerHeight: 52,
     onGridReady: () => {
       this.gridOptions.api.sizeColumnsToFit();
     },
