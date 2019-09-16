@@ -111,7 +111,7 @@ export class TransactionFormComponent implements OnInit, OnChanges {
   }
 
   onCancel() {
-    this.save.emit(this.modelFromForm);
+    this.cancel.emit(this.modelFromForm);
   }
 
 
@@ -145,7 +145,7 @@ export class TransactionFormComponent implements OnInit, OnChanges {
       price: 0.00,
       productId: null,
       transactionId: this.transaction.id,
-      quantity: 0,
+      quantity: 1,
       tags: []
     }
     let group = this.fb.group({
