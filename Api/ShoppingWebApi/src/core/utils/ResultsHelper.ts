@@ -1,4 +1,4 @@
-import {Logger} from "./Logger";
+import {Logger} from "./logger";
 import {RESTApi} from "../RestAPI";
 
 export class ResultsHelper
