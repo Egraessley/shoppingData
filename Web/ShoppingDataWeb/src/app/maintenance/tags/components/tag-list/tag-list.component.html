@@ -1,15 +1,10 @@
-<div class='row gridRow'>
-  <div class='col-12'>
-    <ag-grid-angular
-        class="ag-theme-balham gridStyle"
-        
-        
-        [rowData]="tags"
-        [columnDefs]="columnDefs"
-        [gridOptions]="gridOptions"
-        [pagination]="true"
-        [paginationPageSize]="8"
-        >
-    </ag-grid-angular>
-  </div>
-</div>
+
+<ag-grid-angular
+  class="gridStyle"
+  [rowData]="tags"
+  [columnDefs]="columnDefs"
+  [gridOptions]="gridOptions"
+  [pagination]="true"
+  [paginationPageSize]="8"
+  >
+</ag-grid-angular>
