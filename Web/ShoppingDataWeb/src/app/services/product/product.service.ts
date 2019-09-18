@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { ProductListModel, ProductCreateModel, ProductUpdateModel } from '../../shared/models';
 import { testHelpers } from '../../testing/testhelpers';

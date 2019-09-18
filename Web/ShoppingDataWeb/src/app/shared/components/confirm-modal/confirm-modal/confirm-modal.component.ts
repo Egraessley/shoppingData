@@ -20,7 +20,7 @@ export class ConfirmModalComponent implements OnInit {
   @Output() closed = new EventEmitter<ConfirmResult>();
 
   constructor(
-    private bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,
     private bsModalService: BsModalService
   ) {}
 

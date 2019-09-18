@@ -6,6 +6,7 @@ import { GridButtonsComponent } from './components/ag-grid/grid-buttons/grid-but
 import { ActiveColumnComponent } from './components/ag-grid/active-column/active-column.component';
 import { FriendlyDateComponent } from './components/ag-grid/friendly-date/friendly-date.component';
 import { ShortDateComponent } from './components/ag-grid/short-date/short-date.component';
+import { FriendlyPriceComponent } from './components/ag-grid/friendly-price/friendly-price.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ShortDateComponent } from './components/ag-grid/short-date/short-date.c
     GridButtonsComponent,
     ActiveColumnComponent,
     FriendlyDateComponent,
-    ShortDateComponent
+    ShortDateComponent,
+    FriendlyPriceComponent
   ],
   imports: [
     CommonModule

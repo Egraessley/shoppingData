@@ -18,7 +18,7 @@ export class SectionFormComponent implements OnInit {
     name: ['',Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private bsModalRef: BsModalRef) { }
+  constructor(private fb: FormBuilder, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
       this.form.patchValue(this.section);

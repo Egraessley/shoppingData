@@ -26,7 +26,7 @@ export class ProductFormComponent implements OnInit {
     typeId: [null,[Validators.required]]
   });
 
-  constructor(private fb: FormBuilder, private bsModalRef: BsModalRef) { }
+  constructor(private fb: FormBuilder, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
       this.form.patchValue(this.product);

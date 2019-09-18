@@ -3,6 +3,7 @@ import { TransactionListModel } from '../../../shared/models';
 import { GridButtonsComponent } from '../../../shared/components/ag-grid/grid-buttons/grid-buttons.component';
 import { GridOptions } from 'ag-grid-community';
 import { ShortDateComponent } from '../../../shared/components/ag-grid/short-date/short-date.component';
+import { FriendlyPriceComponent } from '../../../shared/components/ag-grid/friendly-price/friendly-price.component';
 
 @Component({
   selector: 'sd-transaction-list',
@@ -33,6 +34,7 @@ export class TransactionListComponent implements OnInit {
       headerName: 'Price',
       field: 'price',
       sortable: 'true',
+      cellRendererFramework: FriendlyPriceComponent
     },
     {
       headerName: 'Items',

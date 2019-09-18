@@ -26,6 +26,7 @@ import { OrderListComponent } from './components/order-list/order-list.component
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { NgxErrorsModule } from '../ngxerrors/ngxerrors.module';
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
+import { FriendlyPriceComponent } from '../shared/components/ag-grid/friendly-price/friendly-price.component';
 
 @NgModule({
   declarations: [TransactionItemComponent, TransactionComponent, TransactionListComponent, TransactionFormComponent, OrderListComponent, OrderFormComponent, ProductFilterComponent],
@@ -40,7 +41,8 @@ import { ProductFilterComponent } from './components/product-filter/product-filt
       FriendlyDateComponent,
       ShortDateComponent,
       GridButtonsComponent,
-      ActiveColumnComponent
+      ActiveColumnComponent,
+      FriendlyPriceComponent
     ]),
     MaintenanceModule,
     ModalModule.forRoot(),
