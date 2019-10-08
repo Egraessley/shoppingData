@@ -1,10 +1,11 @@
-<sd-transaction-form
+<sd-transaction-form *ngIf="stores"
 [transaction]="transaction$ | async"
 [brands]="brands"
 [types]="types"
 [sections]="sections"
 [tags]="tags"
 [products]="products"
+[stores]= "stores"
 (add)="onAddThing($event)"
 (save)="onSave($event)"
 (create)="onCreate($event)"

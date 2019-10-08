@@ -9,6 +9,8 @@ import * as fromProducts from './product.reducer';
 import * as fromSections from './section.reducer';
 import * as fromTags from './tag.reducer';
 import * as fromTypes from './type.reducer';
+import * as fromStores from './store.reducer';
+import * as fromUsers from './user.reducer';
 
 
 export interface MaintenanceState {
@@ -17,6 +19,8 @@ export interface MaintenanceState {
     sections: fromSections.SectionsState;
     tags: fromTags.TagsState;
     types: fromTypes.TypesState;
+    stores: fromStores.StoresState;
+    users: fromUsers.UsersState;
 }
 
 export const reducers: ActionReducerMap<MaintenanceState> = {
@@ -24,7 +28,9 @@ export const reducers: ActionReducerMap<MaintenanceState> = {
     products: fromProducts.reducer,
     sections: fromSections.reducer,
     tags: fromTags.reducer,
-    types: fromTypes.reducer
+    types: fromTypes.reducer,
+    stores: fromStores.reducer,
+    users: fromUsers.reducer
 }
 
 export const initialState: MaintenanceState = {
@@ -32,7 +38,9 @@ export const initialState: MaintenanceState = {
     products: fromProducts.initialState,
     sections: fromSections.initialState,
     tags: fromTags.initialState,
-    types: fromTypes.initialState
+    types: fromTypes.initialState,
+    stores: fromStores.initialState,
+    users: fromUsers.initialState,
 }
 
 export const getMaintenanceState = createFeatureSelector<MaintenanceState>(

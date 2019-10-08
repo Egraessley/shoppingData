@@ -6,18 +6,23 @@ import { Transactions, OrderItemsToTag, OrderItems, Products, Tags } from "../db
 import { mappers } from "../db/mappers";
 import { ResultsHelper } from "../utils/ResultsHelper";
 import { TransactionView } from "../db/viewModels";
+import { AuthMiddleware } from "../middleware/AuthMiddleware";
 
 
 @ExpressController.basePath('/transactions')
 export default class TransactionController implements BaseController
 {
-    @ExpressController.get('/',[])
+    @ExpressController.get('/',[AuthMiddleware.checkToken])
     async getAll(req,res)
     {
         try {
         const transactions = await getConnection().getRepository(Transactions).find({
             order:{date: 'ASC'},
+            where: {
+                account: res.locals.account
+            },
             relations: [
+                'store',
                 'items',
                 'items.tags',
                 'items.tags.tag',
@@ -33,12 +38,13 @@ export default class TransactionController implements BaseController
         }
     }
 
-    @ExpressController.get('/:id',[])
+    @ExpressController.get('/:id',[AuthMiddleware.checkToken])
     async getOne(req,res)
     {
         try {
             const transaction = await getConnection().getRepository(Transactions).findOne(req.params.id,{
             relations: [
+                'store',
                 'items',
                 'items.tags',
                 'items.tags.tag',
@@ -55,12 +61,13 @@ export default class TransactionController implements BaseController
 
     }
 
-    @ExpressController.post('/',[])
+    @ExpressController.post('/',[AuthMiddleware.checkToken])
     async createOne(req,res)
     {
         try {
             let transaction: TransactionView = req.body;
             let newTransaction = new Transactions();
+            newTransaction.account = res.locals.account;
             await getConnection().transaction(async (m)=>{
                 newTransaction.id=transaction.id;
                 newTransaction.date=transaction.date;
@@ -91,6 +98,7 @@ export default class TransactionController implements BaseController
             });
             let model:any = await getConnection().getRepository(Transactions).findOne(newTransaction.id,{
             relations: [
+                'store',
                 'items',
                 'items.tags',
                 'items.tags.tag',
@@ -106,7 +114,7 @@ export default class TransactionController implements BaseController
         }
     }
 
-    @ExpressController.put('/:id',[])
+    @ExpressController.put('/:id',[AuthMiddleware.checkToken])
     async updateOne(req,res)
     {
         try {
@@ -114,6 +122,7 @@ export default class TransactionController implements BaseController
             await getConnection().transaction(async (m)=>{
                 let transaction = await m.getRepository(Transactions).findOne(newModel.id,{
                     relations: [
+                        'store',
                         'items',
                         'items.tags',
                         'items.tags.tag',
@@ -149,7 +158,7 @@ export default class TransactionController implements BaseController
                         {
                             let mid = new OrderItemsToTag();
                             mid.orderItem = orderItem;
-                            mid.tag = tag;
+                            mid.tag = await m.getRepository(Tags).findOneOrFail(tag.id);
                             await m.getRepository(OrderItemsToTag).save(mid);
                         }
 
@@ -186,6 +195,7 @@ export default class TransactionController implements BaseController
             });
             let model:any = await getConnection().getRepository(Transactions).findOne(req.params.id,{
             relations: [
+                'store',
                 'items',
                 'items.tags',
                 'items.tags.tag',
@@ -201,7 +211,7 @@ export default class TransactionController implements BaseController
         }
     }
 
-    @ExpressController.del('/:id',[])
+    @ExpressController.del('/:id',[AuthMiddleware.checkToken])
     async deleteOne(req,res)
     {
         try {

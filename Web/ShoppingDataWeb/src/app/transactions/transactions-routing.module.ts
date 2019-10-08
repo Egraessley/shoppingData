@@ -22,7 +22,8 @@ const routes: Routes = [
       fromGuards.SectionGuard,
       fromGuards.TagGuard,
       fromGuards.TypeGuard,
-      TransactionItemGuard
+      TransactionItemGuard,
+      fromGuards.StoreGuard
     ]
   },
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
       fromGuards.SectionGuard,
       fromGuards.TagGuard,
       fromGuards.TypeGuard,
-      TransactionItemGuard
+      TransactionItemGuard,
+      fromGuards.StoreGuard
     ]
   }
 ];

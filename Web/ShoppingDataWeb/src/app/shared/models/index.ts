@@ -10,3 +10,6 @@ export * from './type.model';
 export * from './order-item.model';
 export * from './transaction.model';
 export * from './transaction-list.model';
+export * from './user.model';
+export * from './user-list.model';
+export * from './store.model';

@@ -5,16 +5,17 @@ import { getConnection } from "typeorm";
 import { Tags } from "../db/models";
 import { mappers } from "../db/mappers";
 import { ResultsHelper } from "../utils/ResultsHelper";
+import { AuthMiddleware } from "../middleware/AuthMiddleware";
 
 
 @ExpressController.basePath('/tags')
 export default class TagController implements BaseController
 {
-    @ExpressController.get('/',[])
+    @ExpressController.get('/',[AuthMiddleware.checkToken])
     async getAll(req,res)
     {
         try {
-        const tags = await getConnection().getRepository(Tags).find({order:{name: 'ASC'}});
+        const tags = await getConnection().getRepository(Tags).find({order:{name: 'ASC'}, where: {account: res.locals.account}});
         let models = tags.map(tag=>mappers.tags.tagToTagView(tag));
         return res.json(models);
         } catch (e) {
@@ -23,7 +24,7 @@ export default class TagController implements BaseController
         }
     }
 
-    @ExpressController.get('/:id',[])
+    @ExpressController.get('/:id',[AuthMiddleware.checkToken])
     async getOne(req,res)
     {
         try {
@@ -37,11 +38,12 @@ export default class TagController implements BaseController
 
     }
 
-    @ExpressController.post('/',[])
+    @ExpressController.post('/',[AuthMiddleware.checkToken])
     async createOne(req,res)
     {
         try {
             let tag = req.body;
+            tag.account = res.locals.account;
             await getConnection().getRepository(Tags).save(tag);
             let model = mappers.tags.tagViewToTag(tag);
             return res.json(model);
@@ -51,7 +53,7 @@ export default class TagController implements BaseController
         }
     }
 
-    @ExpressController.put('/:id',[])
+    @ExpressController.put('/:id',[AuthMiddleware.checkToken])
     async updateOne(req,res)
     {
         try {
@@ -65,7 +67,7 @@ export default class TagController implements BaseController
         }
     }
 
-    @ExpressController.del('/:id',[])
+    @ExpressController.del('/:id',[AuthMiddleware.checkToken])
     async deleteOne(req,res)
     {
         try {

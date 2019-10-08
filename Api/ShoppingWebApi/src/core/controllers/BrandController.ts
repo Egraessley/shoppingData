@@ -5,16 +5,17 @@ import { getConnection } from "typeorm";
 import { Brands } from "../db/models";
 import { mappers } from "../db/mappers";
 import { ResultsHelper } from "../utils/ResultsHelper";
+import { AuthMiddleware } from "../middleware/AuthMiddleware";
 
 
 @ExpressController.basePath('/brands')
 export default class BrandController implements BaseController
 {
-    @ExpressController.get('/',[])
+    @ExpressController.get('/',[AuthMiddleware.checkToken])
     async getAll(req,res)
     {
         try {
-        const brands = await getConnection().getRepository(Brands).find({order:{name: 'ASC'}});
+        const brands = await getConnection().getRepository(Brands).find({order:{name: 'ASC'},where:{account: res.locals.account}});
         let models = brands.map(brand=>mappers.brands.brandToBrandView(brand));
         return res.json(models);
         } catch (e) {
@@ -23,7 +24,7 @@ export default class BrandController implements BaseController
         }
     }
 
-    @ExpressController.get('/:id',[])
+    @ExpressController.get('/:id',[AuthMiddleware.checkToken])
     async getOne(req,res)
     {
         try {
@@ -37,11 +38,12 @@ export default class BrandController implements BaseController
 
     }
 
-    @ExpressController.post('/',[])
+    @ExpressController.post('/',[AuthMiddleware.checkToken])
     async createOne(req,res)
     {
         try {
             let brand = req.body;
+            brand.account = res.locals.account;
             await getConnection().getRepository(Brands).save(brand);
             let model = mappers.brands.brandViewToBrand(brand);
             return res.json(model);
@@ -51,7 +53,7 @@ export default class BrandController implements BaseController
         }
     }
 
-    @ExpressController.put('/:id',[])
+    @ExpressController.put('/:id',[AuthMiddleware.checkToken])
     async updateOne(req,res)
     {
         try {
@@ -65,7 +67,7 @@ export default class BrandController implements BaseController
         }
     }
 
-    @ExpressController.del('/:id',[])
+    @ExpressController.del('/:id',[AuthMiddleware.checkToken])
     async deleteOne(req,res)
     {
         try {

@@ -15,6 +15,7 @@ export class ProductFormComponent implements OnInit {
   brands: fromModels.BrandModel[] = [];
   sections: fromModels.SectionModel[] = [];
   types: fromModels.TypeModel[] = [];
+  products: fromModels.ProductListModel[] = [];
 
 
   save = new EventEmitter<fromModels.ProductUpdateModel>();

@@ -7,3 +7,5 @@ export * from './type.view';
 export * from './order-item.view';
 export * from './transaction-list.view';
 export * from './transaction.view';
+export * from './user.view';
+export * from './store.view'

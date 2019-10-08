@@ -12,6 +12,8 @@ export class TagFormComponent implements OnInit {
 
   tag: TagModel;
 
+  tags: TagModel[] = [];
+
   save = new EventEmitter<TagModel>();
 
   form = this.fb.group({

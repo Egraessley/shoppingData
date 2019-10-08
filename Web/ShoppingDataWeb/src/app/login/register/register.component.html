@@ -1,0 +1,32 @@
+
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="name" class="control-label">First Name</label>
+      <input type="text" id="firtName" class="form-control" formControlName="firstName" maxlength="140">
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="control-label">Last Name</label>
+      <input type="text" id="lastName" class="form-control" formControlName="lastName" maxlength="140">
+    </div>
+    <div  class="form-group">
+      <label for="email" class="control-label">E-Mail</label>
+      <input type="text" id="email" class="form-control" formControlName="email" maxlength="140">
+      <span *ngIf="errors.uniqueEmail" class="error">Email must be unique</span>
+    </div>
+    <div *ngIf="!exists" class="form-group">
+      <label for="userName" class="control-label">UserName</label>
+      <input type="text" id="userName" class="form-control" formControlName="userName" maxlength="140">
+      <span *ngIf="errors.uniqueUserName" class="error">UserName must be unique</span>
+    </div>
+    <div *ngIf="!exists" class="form-group">
+      <label  for="password" class="control-label">Password</label>
+      <input type="password" id="password" class="form-control" formControlName="password" maxlength="140">
+      <span *ngIf="errors.passwordLength" class="error">Password must be 8 characters</span>
+    </div>
+    <div *ngIf="!exists" class="form-group">
+      <label for="confirmPassword" class="control-label">Confirm Password</label>
+      <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword" maxlength="140">
+      <span *ngIf="errors.confirmPassword" class="error">Passwords must match</span>
+    </div>
+    <button type="button" [disabled]="form.invalid" (click)="onSave()">Register</button>
+  </form>

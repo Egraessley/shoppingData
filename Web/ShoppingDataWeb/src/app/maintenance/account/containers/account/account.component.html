@@ -1,0 +1,11 @@
+<div class="page-wrapper">
+  <h2>Users</h2>
+   <div class="table-btn-wrapper">
+    <button class="table-btn-add" (click)="addUser()" i18n="@@addButton">Add</button>
+  </div>
+  <div class="table-wrapper">
+    <sd-user-list [users]="users$ | async" (delete)="deleteUser($event)" (edit)="editUser($event)"></sd-user-list>
+  </div>
+</div>
+
+      

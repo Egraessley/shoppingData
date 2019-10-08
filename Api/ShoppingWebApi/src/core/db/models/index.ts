@@ -6,3 +6,6 @@ export * from './type.model';
 export * from './transaction.model';
 export * from './orderItemToTag';
 export * from './orderItem.model';
+export * from './Store.model';
+export * from './account.model';
+export * from './user.model';

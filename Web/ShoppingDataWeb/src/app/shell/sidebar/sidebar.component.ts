@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services';
 
 @Component({
   selector: 'sd-sidebar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  isAdmin = false;
+  isSuper = false;
+
+  constructor(private authservice: AuthenticationService ) { }
 
   ngOnInit() {
+    if(this.authservice.currentUser)
+    {
+      this.isAdmin = this.authservice.currentUser.isAdmin;
+      this.isSuper = this.authservice.currentUser.isSuper;
+    } 
   }
 
 }

@@ -28,6 +28,13 @@ import { TypeFormComponent } from './type/components/type-form/type-form.compone
 import { ProductComponent } from './product/containers/product/product.component';
 import { ProductListComponent } from './product/components/product-list/product-list.component';
 import { ProductFormComponent } from './product/components/product-form/product-form.component';
+import { StoreComponent } from './stores/containers/store/store.component';
+import { StoreListComponent } from './stores/components/store-list/store-list.component';
+import { StoreFormComponent } from './stores/components/store-form/store-form.component';
+import { AccountComponent } from './account/containers/account/account.component';
+import { UserListComponent } from './account/components/user-list/user-list.component';
+import { UserFormComponent } from './account/components/user-form/user-form.component';
+import { FullNameComponent } from '../shared/components/ag-grid/full-name/full-name.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +52,13 @@ import { ProductFormComponent } from './product/components/product-form/product-
     TypeFormComponent,
     ProductComponent,
     ProductListComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    StoreComponent,
+    StoreListComponent,
+    StoreFormComponent,
+    AccountComponent,
+    UserListComponent,
+    UserFormComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +72,8 @@ import { ProductFormComponent } from './product/components/product-form/product-
       GridButtonsComponent,
       ActiveColumnComponent,
       ShortDateComponent,
-      FriendlyDateComponent
+      FriendlyDateComponent,
+      FullNameComponent
     ]),
   ],
   providers: [BsModalService],
@@ -68,7 +82,9 @@ import { ProductFormComponent } from './product/components/product-form/product-
     TagFormComponent,
     SectionFormComponent,
     TypeFormComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    UserFormComponent,
+    StoreFormComponent
   ]
 })
 export class MaintenanceModule { }

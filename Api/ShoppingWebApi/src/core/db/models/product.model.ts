@@ -7,6 +7,7 @@ import { Brands } from "./brand.model";
 import { Sections } from "./section.model";
 import { Types } from "./type.model";
 import { OrderItems } from "./orderItem.model";
+import { Accounts } from "./account.model";
 
 @Entity()
 export class Products
@@ -31,5 +32,9 @@ export class Products
 
     @OneToMany(type => OrderItems, item=>item.product)
     orderItems?:OrderItems[];
+
+    @ManyToOne(type=>Accounts)
+    @JoinColumn()
+    account: Accounts;
 
 }

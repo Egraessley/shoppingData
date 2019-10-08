@@ -5,6 +5,7 @@ import {
 } from "typeorm";
 import {type} from "os";
 import { Products } from "./product.model";
+import { Accounts } from "./account.model";
 
 @Entity()
 export class Brands
@@ -17,4 +18,9 @@ export class Brands
 
     @OneToMany(type => Products, prod=>prod.brand)
     products?:Products[];
+
+    @ManyToOne(type => Accounts)
+    @JoinColumn()
+    account: Accounts;
+    
 }

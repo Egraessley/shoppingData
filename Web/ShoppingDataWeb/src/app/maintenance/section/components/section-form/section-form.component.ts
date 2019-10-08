@@ -12,6 +12,8 @@ export class SectionFormComponent implements OnInit {
 
   section: SectionModel;
 
+  sections: SectionModel[] = [];
+
   save = new EventEmitter<SectionModel>();
 
   form = this.fb.group({

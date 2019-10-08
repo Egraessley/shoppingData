@@ -5,16 +5,17 @@ import { getConnection } from "typeorm";
 import { Types } from "../db/models";
 import { mappers } from "../db/mappers";
 import { ResultsHelper } from "../utils/ResultsHelper";
+import { AuthMiddleware } from "../middleware/AuthMiddleware";
 
 
 @ExpressController.basePath('/types')
 export default class TypeController implements BaseController
 {
-    @ExpressController.get('/',[])
+    @ExpressController.get('/',[AuthMiddleware.checkToken])
     async getAll(req,res)
     {
         try {
-        const types = await getConnection().getRepository(Types).find({order:{name: 'ASC'}});
+        const types = await getConnection().getRepository(Types).find({order:{name: 'ASC'}, where: {account: res.locals.account}});
         let models = types.map(type=>mappers.types.typeToTypeView(type));
         return res.json(models);
         } catch (e) {
@@ -23,11 +24,15 @@ export default class TypeController implements BaseController
         }
     }
 
-    @ExpressController.get('/:id',[])
+    @ExpressController.get('/:id',[AuthMiddleware.checkToken])
     async getOne(req,res)
     {
         try {
-            const type = await getConnection().getRepository(Types).findOne(req.params.id);
+            const type = await getConnection().getRepository(Types).findOne(req.params.id, {
+                where: {
+                    account: res.locals.account
+                }
+            });
             let model = mappers.types.typeToTypeView(type);
             return res.json(model);
         } catch (e) {
@@ -37,11 +42,12 @@ export default class TypeController implements BaseController
 
     }
 
-    @ExpressController.post('/',[])
+    @ExpressController.post('/',[AuthMiddleware.checkToken])
     async createOne(req,res)
     {
         try {
             let type = req.body;
+            type.account = res.locals.account;
             await getConnection().getRepository(Types).save(type);
             let model = mappers.types.typeViewToType(type);
             return res.json(model);
@@ -51,7 +57,7 @@ export default class TypeController implements BaseController
         }
     }
 
-    @ExpressController.put('/:id',[])
+    @ExpressController.put('/:id',[AuthMiddleware.checkToken])
     async updateOne(req,res)
     {
         try {
@@ -65,7 +71,7 @@ export default class TypeController implements BaseController
         }
     }
 
-    @ExpressController.del('/:id',[])
+    @ExpressController.del('/:id',[AuthMiddleware.checkToken])
     async deleteOne(req,res)
     {
         try {

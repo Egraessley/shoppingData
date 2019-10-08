@@ -12,6 +12,8 @@ export class TypeFormComponent implements OnInit {
 
   type: TypeModel;
 
+  types: TypeModel[] = [];
+
   save = new EventEmitter<TypeModel>();
 
   form = this.fb.group({

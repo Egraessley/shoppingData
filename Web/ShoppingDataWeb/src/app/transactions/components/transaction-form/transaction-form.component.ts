@@ -31,6 +31,9 @@ export class TransactionFormComponent implements OnInit, OnChanges {
   @Input()
   types: fromModels.TypeModel[] = [];
 
+  @Input()
+  stores: fromModels.StoreModel[] = [];
+
   @Output()
   save = new EventEmitter<fromModels.TransactionModel>();
   @Output()
@@ -42,7 +45,9 @@ export class TransactionFormComponent implements OnInit, OnChanges {
 
   form: FormGroup = this.fb.group({
     date: [null, [Validators.required]],
-    items: this.fb.array([])
+    items: this.fb.array([]),
+    storeId: [null],
+    storeName: ['']
   });
 
 
@@ -58,6 +63,22 @@ export class TransactionFormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.transaction && changes.transaction.currentValue) {
       this.setupForm();
+      if(this.stores && this.stores.length)
+      {
+        let store = this.stores.find(x=> x.id === this.transaction.storeId);
+        if(store)
+        {
+          this.form.controls.storeName.patchValue(store.name);
+        }
+      }
+    }
+    if(changes.stores && changes.stores.currentValue && this.form.controls.storeId && this.form.controls.storeId.value)
+    {
+      let store = this.stores.find(x=> x.id === +this.form.controls.storeId.value);
+      if(store)
+      {
+        this.form.controls.storeName.patchValue(store.name);
+      }
     }
   }
 
@@ -95,7 +116,7 @@ export class TransactionFormComponent implements OnInit, OnChanges {
       });
       (<FormArray>this.form.controls.items).push(group);
     });
-    this.form.setValidators([this.itemsCheck])
+    this.form.setValidators([this.itemsCheck]);
   }
 
   onAddThing(type: string) {
@@ -114,10 +135,14 @@ export class TransactionFormComponent implements OnInit, OnChanges {
     this.cancel.emit(this.modelFromForm);
   }
 
+  addStore(event) {
+    const store = event.item;
+    this.form.controls.storeId.patchValue(store.id);
+  }
+
 
   get modelFromForm(): TransactionModel {
     let value = this.form.getRawValue();
-    console.log(value);
     let items = value.items.map(ctrl => {
       let merged = {
         ...ctrl.entity,
@@ -125,13 +150,11 @@ export class TransactionFormComponent implements OnInit, OnChanges {
       }
       merged.price = +Number.parseFloat(merged.price).toFixed(2);
       merged.quantity = +Number.parseFloat(merged.quantity).toFixed(2);
-      console.log(merged);
       delete merged.entity;
       delete merged.productName;
       delete merged.tagName;
       return merged
     });
-    console.log(items);
     return {
       ...this.transaction,
       ...value,

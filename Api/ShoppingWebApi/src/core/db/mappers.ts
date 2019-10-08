@@ -16,7 +16,8 @@ export const mappers = {
         brandViewToBrand(brand: fromViews.BrandView): fromModels.Brands {
             return {
                 id: brand.id,
-                name: brand.name
+                name: brand.name,
+                account: null
             }
         }
 
@@ -32,7 +33,8 @@ export const mappers = {
         sectionViewToSection(section: fromViews.SectionView): fromModels.Sections {
             return {
                 id: section.id,
-                name: section.name
+                name: section.name,
+                account: null
             }
         },
     },
@@ -47,7 +49,8 @@ export const mappers = {
         tagViewToTag(tag: fromViews.TagView): fromModels.Tags {
             return {
                 id: tag.id,
-                name: tag.name
+                name: tag.name,
+                account: null
             }
         },
 
@@ -63,7 +66,8 @@ export const mappers = {
         typeViewToType(type: fromViews.TypeView): fromModels.Types {
             return {
                 id: type.id,
-                name: type.name
+                name: type.name,
+                account: null
             }
         }
     },
@@ -100,7 +104,8 @@ export const mappers = {
                     name: product.name,
                     brand,
                     type,
-                    section
+                    section,
+                    account: null
                 }
             }
             catch (e) {
@@ -119,28 +124,6 @@ export const mappers = {
                 price: item.price,
                 transactionId: item.transaction.id
             }
-        },
-        async orderItemViewToOrderItem(item: fromViews.orderItemView): Promise<fromModels.OrderItems> {
-            const product = await getConnection().getRepository(fromModels.Products).findOne(item.productId);
-            const transaction = await getConnection().getRepository(fromModels.Transactions).findOne(item.transactionId);
-            let orderItem = {
-                id: item.id,
-                price: item.price,
-                product,
-                quantity: item.quantity,
-                transaction: transaction,
-                tags: []
-            }
-            let tags: fromModels.OrderItemsToTag[] = item.tags.map(tag=>{
-                let mid: fromModels.OrderItemsToTag = {
-                    id: tag.id,
-                    orderItem,
-                    tag
-                }
-                return mid;
-            });
-            orderItem.tags = tags;
-            return orderItem;
         }
     }, 
     transactions: {
@@ -156,20 +139,9 @@ export const mappers = {
             return {
                 id: transaction.id,
                 items: transaction.items.map(item=>mappers.orderItems.orderItemtoOrderItemView(item)),
-                date: transaction.date
+                date: transaction.date,
+                storeId: transaction.store.id
             }
         },
-        async transactionViewToTransaction(view: fromViews.TransactionView): Promise<fromModels.Transactions> {
-            let items: fromModels.OrderItems[] = [];
-            for (const item of view.items) {
-                let newItem = await mappers.orderItems.orderItemViewToOrderItem(item);
-                items.push(newItem);
-            }
-            return {
-                id: view.id,
-                date: view.date,
-                items
-            }
-        }
     }
 }

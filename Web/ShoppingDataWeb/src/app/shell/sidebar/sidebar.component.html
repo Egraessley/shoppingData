@@ -7,6 +7,12 @@
       </a>
     </li>
     <li routerLinkActive="active">
+      <a routerLink="/transactions/new">
+        <i class="fa fa-th-large"></i>
+        <span class="nav-label">Add Transaction</span>
+      </a>
+    </li>
+    <li routerLinkActive="active">
       <a routerLink="/transactions/list">
         <i class="fa fa-th-large"></i>
         <span class="nav-label"> Transactions</span>
@@ -25,9 +31,9 @@
       </a>
     </li>
     <li routerLinkActive="active">
-      <a routerLink="/admin/sections">
+      <a routerLink="/admin/types">
         <i class="fa fa-th-large"></i>
-        <span class="nav-label"> Sections</span>
+        <span class="nav-label"> Types</span>
       </a>
     </li>
     <li routerLinkActive="active">
@@ -36,10 +42,22 @@
         <span class="nav-label"> Tags</span>
       </a>
     </li>
-    <li routerLinkActive="active">
-      <a routerLink="/admin/types">
+    <li *ngIf="isAdmin" routerLinkActive="active">
+      <a routerLink="/admin/account">
         <i class="fa fa-th-large"></i>
-        <span class="nav-label"> Types</span>
+        <span class="nav-label"> Account</span>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/sections">
+        <i class="fa fa-th-large"></i>
+        <span class="nav-label"> Sections</span>
+      </a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/admin/stores">
+        <i class="fa fa-th-large"></i>
+        <span class="nav-label"> Stores</span>
       </a>
     </li>
   </ul>

@@ -1,0 +1,9 @@
+<div class="page-wrapper">
+  <h5>Stores</h5>
+  <div class="table-btn-wrapper">
+    <button class="table-btn-add" (click)="onCreate()" i18n="@@addButton">Add</button>
+  </div>
+  <div class="table-wrapper">
+    <sd-store-list [stores]="stores$ | async" (delete)="onDelete($event)" (edit)="onEdit($event)"></sd-store-list>
+  </div>
+</div>

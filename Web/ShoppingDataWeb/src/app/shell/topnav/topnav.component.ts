@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../services';
 
 @Component({
   selector: 'sd-topnav',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopnavComponent implements OnInit {
 
-  constructor() { }
+  name = '';
+  constructor(private authservice: AuthenticationService) { }
 
   ngOnInit() {
+    if(this.authservice.currentUser)
+    {
+      this.name = this.authservice.currentUser.userName;
+    }
   }
 
 }

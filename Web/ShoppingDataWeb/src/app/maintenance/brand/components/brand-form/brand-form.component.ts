@@ -12,6 +12,8 @@ export class BrandFormComponent implements OnInit {
 
   brand: BrandModel;
 
+  brands: BrandModel[];
+
   save = new EventEmitter<BrandModel>();
 
   form = this.fb.group({

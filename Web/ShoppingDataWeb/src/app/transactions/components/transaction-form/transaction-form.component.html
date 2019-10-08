@@ -7,6 +7,12 @@
       placeholder="Transaction Date..." class="form-control" bsDatepicker formControlName="date" readonly
       #dp="bsDatepicker">
   </div>
+  <div class="form-group">
+    <label class="control-label" >Store               
+    <input class="form-control" formControlName="storeName" [typeahead]="stores" typeaheadOptionField="name"
+    (typeaheadOnSelect)="addStore($event)"></label>   
+    </div>
+    <button type="button" (click)="onAddThing('store')">Add Store</button>
 </form>
 <button class="btn btn-primary" (click)="addOrder()">Add Item</button>
 <sd-order-list [parentForm]="form.controls.items" [brands]="brands" [types]="types" [sections]="sections" [tags]="tags"

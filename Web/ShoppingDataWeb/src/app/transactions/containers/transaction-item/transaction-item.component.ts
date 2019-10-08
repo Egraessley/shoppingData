@@ -14,6 +14,7 @@ import { TagFormComponent } from '../../../maintenance/tags/components/tag-form/
 import { SectionFormComponent } from '../../../maintenance/section/components/section-form/section-form.component';
 import { ProductFormComponent } from '../../../maintenance/product/components/product-form/product-form.component';
 import { TypeFormComponent } from '../../../maintenance/type/components/type-form/type-form.component';
+import { StoreFormComponent } from '../../../maintenance/stores/components/store-form/store-form.component';
 
 @Component({
   selector: 'sd-transaction-item',
@@ -28,6 +29,7 @@ export class TransactionItemComponent implements OnInit {
   brands: fromModels.BrandModel[];
   sections: fromModels.SectionModel[];
   types: fromModels.TypeModel[];
+  stores: fromModels.StoreModel[];
 
   constructor(
     private modalService: BsModalService,
@@ -42,6 +44,7 @@ export class TransactionItemComponent implements OnInit {
     this.store.pipe(select(fromMaintenance.getProductEntities), tap(x => this.products = x)).subscribe();
     this.store.pipe(select(fromMaintenance.getSectionEntities), tap(x => this.sections = x)).subscribe();
     this.store.pipe(select(fromMaintenance.getTypeEntities), tap(x => this.types = x)).subscribe();
+    this.store.pipe(select(fromMaintenance.getStoreEntities), tap(x=>this.stores = x)).subscribe();
   }
 
   onAddThing(type: string) {
@@ -123,6 +126,20 @@ export class TransactionItemComponent implements OnInit {
             modal.hide();
           });
         break;
+        case 'store':
+            modal = this.modalService.show(StoreFormComponent, {
+              initialState: {
+                store: {
+                  id: 0,
+                  name: ''
+                }
+              }
+            });
+            modal.content.save.subscribe((store: fromModels.StoreModel) => {
+              this.store.dispatch(new fromMaintenance.StoreCreated({ store }));
+              modal.hide();
+            });
+          break;
       default:
         break;
     }
@@ -130,13 +147,11 @@ export class TransactionItemComponent implements OnInit {
 
 
   onSave(transaction: fromModels.TransactionModel) {
-    console.log(transaction);
     this.store.dispatch(new fromTransactionStore.TransactionItemSaved({ transaction }));
   }
 
 
   onCreate(transaction: fromModels.TransactionModel) {
-    console.log(transaction);
     this.store.dispatch(new fromTransactionStore.TransactionItemCreated({ transaction }));
   }
 

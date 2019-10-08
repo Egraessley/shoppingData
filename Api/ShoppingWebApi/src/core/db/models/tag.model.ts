@@ -5,6 +5,7 @@ import {
 } from "typeorm";
 import {type} from "os";
 import { OrderItemsToTag } from "./orderItemToTag";
+import { Accounts } from "./account.model";
 
 @Entity()
 export class Tags
@@ -16,5 +17,9 @@ export class Tags
     name:string;
 
     @OneToMany(type=>OrderItemsToTag, item=>item.tag)
-    orderItems?: OrderItemsToTag
+    orderItems?: OrderItemsToTag;
+
+    @ManyToOne(type=>Accounts)
+    @JoinColumn()
+    account: Accounts;
 }

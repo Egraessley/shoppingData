@@ -6,6 +6,8 @@ import { TagComponent } from './tags/containers/tag/tag.component';
 import { TypeComponent } from './type/containers/type/type.component';
 import { SectionComponent } from './section/containers/section/section.component';
 import { ProductComponent } from './product/containers/product/product.component';
+import { StoreComponent } from './stores/containers/store/store.component';
+import { AccountComponent } from './account/containers/account/account.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,16 @@ const routes: Routes = [
     path: 'sections',
     component: SectionComponent,
     canActivate: [fromGuards.SectionGuard]
+  },
+  {
+    path: 'stores',
+    component: StoreComponent,
+    canActivate: [fromGuards.StoreGuard]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [fromGuards.UserGuard]
   }
 ];
 

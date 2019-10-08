@@ -5,12 +5,13 @@ import { getConnection } from "typeorm";
 import { Sections } from "../db/models";
 import { mappers } from "../db/mappers";
 import { ResultsHelper } from "../utils/ResultsHelper";
+import { AuthMiddleware } from "../middleware/AuthMiddleware";
 
 
 @ExpressController.basePath('/sections')
 export default class SectionController implements BaseController
 {
-    @ExpressController.get('/',[])
+    @ExpressController.get('/',[AuthMiddleware.checkToken])
     async getAll(req,res)
     {
         try {
@@ -23,7 +24,7 @@ export default class SectionController implements BaseController
         }
     }
 
-    @ExpressController.get('/:id',[])
+    @ExpressController.get('/:id',[AuthMiddleware.checkToken])
     async getOne(req,res)
     {
         try {
@@ -37,11 +38,12 @@ export default class SectionController implements BaseController
 
     }
 
-    @ExpressController.post('/',[])
+    @ExpressController.post('/',[AuthMiddleware.checkToken])
     async createOne(req,res)
     {
         try {
             let section = req.body;
+            section.account= res.locals.account;
             await getConnection().getRepository(Sections).save(section);
             let model = mappers.sections.sectionViewToSection(section);
             return res.json(model);
@@ -51,7 +53,7 @@ export default class SectionController implements BaseController
         }
     }
 
-    @ExpressController.put('/:id',[])
+    @ExpressController.put('/:id',[AuthMiddleware.checkToken])
     async updateOne(req,res)
     {
         try {
@@ -65,7 +67,7 @@ export default class SectionController implements BaseController
         }
     }
 
-    @ExpressController.del('/:id',[])
+    @ExpressController.del('/:id',[AuthMiddleware.checkToken])
     async deleteOne(req,res)
     {
         try {

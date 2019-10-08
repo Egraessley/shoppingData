@@ -5,10 +5,12 @@ export interface TransactionModel {
     id: number;
     items: orderItemModel[];
     date: Date;
+    storeId: number;
 }
 
 export const blankTransaction: TransactionModel = {
     id: 0,
     items: [],
-    date: moment().toDate()
+    date: moment().toDate(),
+    storeId: null
 }

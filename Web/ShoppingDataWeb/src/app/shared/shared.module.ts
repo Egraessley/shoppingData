@@ -7,6 +7,7 @@ import { ActiveColumnComponent } from './components/ag-grid/active-column/active
 import { FriendlyDateComponent } from './components/ag-grid/friendly-date/friendly-date.component';
 import { ShortDateComponent } from './components/ag-grid/short-date/short-date.component';
 import { FriendlyPriceComponent } from './components/ag-grid/friendly-price/friendly-price.component';
+import { FullNameComponent } from './components/ag-grid/full-name/full-name.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FriendlyPriceComponent } from './components/ag-grid/friendly-price/frie
     ActiveColumnComponent,
     FriendlyDateComponent,
     ShortDateComponent,
-    FriendlyPriceComponent
+    FriendlyPriceComponent,
+    FullNameComponent
   ],
   imports: [
     CommonModule
