@@ -9,9 +9,16 @@
     <div class="form-group">
       <label for="name" class="control-label" i18n="@@nameLabel">Type Name</label>
       <input name="description" id="name" class="form-control" formControlName="name" />
+      <div ngxErrors="name">
+        <div ngxError="required" [when]="['dirty', 'touched']">
+          <span class="validation-error-message">Brand Name is required</span>
+        </div>
+      </div>
     </div>
-  </form>  
-  <div class="modal-footer">
-    <button for="this-form" type="submit" [disabled]="form.invalid" class="button" (click)="onSave()">{{buttonText}}</button>
-    <button type="button" class="button-gray" (click)="bsModalRef.hide()" i18n="@@cancelButton">Cancel</button>
-  </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button for="this-form" type="submit" [disabled]="form.invalid" class="button"
+    (click)="onSave()">{{buttonText}}</button>
+  <button type="button" class="button-gray" (click)="bsModalRef.hide()" i18n="@@cancelButton">Cancel</button>
+</div>

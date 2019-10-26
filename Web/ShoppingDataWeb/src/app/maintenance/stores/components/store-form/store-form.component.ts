@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import { StoreModel } from '../../../../shared/models';
 
@@ -24,6 +24,11 @@ export class StoreFormComponent implements OnInit {
 
   ngOnInit() {
       this.form.patchValue(this.store);
+      this.form.setValidators([Validators.required,this.uniqueName])
+  }
+
+  uniqueName: ValidatorFn = (control: FormControl): ValidationErrors | null => { 
+    return this.stores.find(x=>x.name.toLowerCase() === control.value.toLowerCase()) ? {uniqueName: true} : null;
   }
 
 

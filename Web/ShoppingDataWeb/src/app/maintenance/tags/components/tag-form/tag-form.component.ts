@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import { TagModel } from '../../../../shared/models';
 
@@ -24,6 +24,11 @@ export class TagFormComponent implements OnInit {
 
   ngOnInit() {
       this.form.patchValue(this.tag);
+      this.form.controls.name.setValidators([Validators.required,this.uniqueName]);
+  }
+
+  uniqueName: ValidatorFn = (control: FormControl): ValidationErrors | null => { 
+    return this.tags.find(x=>x.name.toLowerCase() === control.value.toLowerCase()) ? {uniqueName: true} : null;
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserListModel } from '../../../../shared/models';
-import { FormGroup, Validators, FormBuilder, ValidatorFn, FormControl, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, ValidatorFn, FormControl, ValidationErrors, AbstractControl, Validator } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import { AppState } from '../../../../store';
 import { Store, select } from '@ngrx/store';
@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-  errors = {}
+  errors: any = {}
   @Input()
   user: UserListModel;
 
@@ -97,8 +97,13 @@ export class UserFormComponent implements OnInit {
     return this.emailInUse ? {inUse : true} : null;
   }
 
+  passwordAlphanumeric: ValidatorFn = (control: FormControl): ValidationErrors | null =>{
+    let regex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))");
+    return control.value && control.value.length && regex.test(control.value) ? null : {weakPassword: true}
+  }
+
   passwordCheck: ValidatorFn = (control: FormControl): ValidationErrors | null => { 
-    return control.value.length >= 8 ? null : {invalidPassword: true};
+    return control.value.length >= 8 ? null : {tooShort: true};
   }
 
   confirmPasswordCheck: ValidatorFn = (control: FormControl): ValidationErrors | null => { 

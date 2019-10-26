@@ -35,6 +35,7 @@ import { AccountComponent } from './account/containers/account/account.component
 import { UserListComponent } from './account/components/user-list/user-list.component';
 import { UserFormComponent } from './account/components/user-form/user-form.component';
 import { FullNameComponent } from '../shared/components/ag-grid/full-name/full-name.component';
+import { NgxErrorsModule } from '../ngxerrors/ngxerrors.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { FullNameComponent } from '../shared/components/ag-grid/full-name/full-n
     StoreFormComponent,
     AccountComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +76,7 @@ import { FullNameComponent } from '../shared/components/ag-grid/full-name/full-n
       FriendlyDateComponent,
       FullNameComponent
     ]),
+    NgxErrorsModule
   ],
   providers: [BsModalService],
   entryComponents: [

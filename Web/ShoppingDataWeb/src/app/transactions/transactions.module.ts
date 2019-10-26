@@ -48,7 +48,7 @@ import { FriendlyPriceComponent } from '../shared/components/ag-grid/friendly-pr
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TypeaheadModule.forRoot(),
-    NgxErrorsModule
+    NgxErrorsModule,
   ],
   providers:[BsModalRef,BsModalService],
   entryComponents: [

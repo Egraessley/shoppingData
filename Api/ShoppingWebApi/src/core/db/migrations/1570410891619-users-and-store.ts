@@ -66,7 +66,7 @@ export class usersAndStore1570410891619 implements MigrationInterface {
         await queryRunner.createTable(new Table({
             name: 'stores', columns: [
                 new TableColumn({ name: 'id', generationStrategy: 'increment', type: 'int', isPrimary: true, isGenerated: true, isUnique: true, isNullable: false }),
-                new TableColumn({ name: 'name', type: 'varchar', isNullable: false, isUnique: true }),
+                new TableColumn({ name: 'name', type: 'varchar', isNullable: false, isUnique: false }),
                 new TableColumn({ name: 'accountId', type: 'int', isNullable: false })
             ],
             indices: [

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  errors = {};
+  errors:any = {};
 
   unInUse = false;
   emailInUse = false;

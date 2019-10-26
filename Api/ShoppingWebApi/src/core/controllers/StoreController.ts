@@ -15,7 +15,7 @@ export default class StoreController implements BaseController
     async getAll(req,res)
     {
         try {
-        const stores = await getConnection().getRepository(Stores).find({order:{name: 'ASC'}});
+        const stores = await getConnection().getRepository(Stores).find({ where: {account: res.locals.account},order:{name: 'ASC'}});
         let models = stores.map(x=>{
             return {
                 name: x.name,

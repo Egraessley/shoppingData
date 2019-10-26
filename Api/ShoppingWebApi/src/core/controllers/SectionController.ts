@@ -15,7 +15,7 @@ export default class SectionController implements BaseController
     async getAll(req,res)
     {
         try {
-        const sections = await getConnection().getRepository(Sections).find({order:{name: 'ASC'}});
+        const sections = await getConnection().getRepository(Sections).find({where: {account: res.locals.account},order:{name: 'ASC'}});
         let models = sections.map(section=>mappers.sections.sectionToSectionView(section));
         return res.json(models);
         } catch (e) {

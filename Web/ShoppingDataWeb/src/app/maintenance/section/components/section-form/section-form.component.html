@@ -9,6 +9,11 @@
     <div class="form-group">
       <label for="name" class="control-label" i18n="@@nameLabel">Section Name</label>
       <input name="description" id="name" class="form-control" formControlName="name" />
+      <div ngxErrors="name">
+        <div ngxError="required" [when]="['dirty', 'touched']">
+          <span class="validation-error-message">Section Name is required</span>
+        </div>
+      </div>
     </div>
   </form>  
   <div class="modal-footer">

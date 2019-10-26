@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInteceptor } from './services/auth.interceptor';
 import { SpinnyModule } from './spinny/spinny.module';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -29,7 +30,7 @@ import { SpinnyModule } from './spinny/spinny.module';
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule,
-    SpinnyModule
+    SpinnyModule,
   ],
   providers: [
     {

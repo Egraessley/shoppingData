@@ -46,7 +46,7 @@ export class TransactionFormComponent implements OnInit, OnChanges {
   form: FormGroup = this.fb.group({
     date: [null, [Validators.required]],
     items: this.fb.array([]),
-    storeId: [null],
+    storeId: [null, [Validators.required]],
     storeName: ['']
   });
 
@@ -90,12 +90,12 @@ export class TransactionFormComponent implements OnInit, OnChanges {
 
   priceCheck: ValidatorFn = (control: FormControl): ValidationErrors | null => {
 
-    return !isNaN(+control.value) && +control.value >= 0 ? null : { invalid: true }
+    return !isNaN(+control.value) && +control.value >= 0 ? null : { invalidNumber: true }
 
   }
 
   quantityCheck: ValidatorFn = (control: FormControl): ValidationErrors | null => {
-    return !isNaN(+control.value) && +control.value > 0 ? null : { invalid: true };
+    return !isNaN(+control.value) && +control.value > 0 ? null : { invalidNumber: true };
   }
 
   setupForm() {

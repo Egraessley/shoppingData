@@ -7,14 +7,27 @@
       placeholder="Transaction Date..." class="form-control" bsDatepicker formControlName="date" readonly
       #dp="bsDatepicker">
   </div>
+  <div ngxErrors="bsDatepicker">
+    <div ngxError="required" [when]="['dirty', 'touched']">
+      <span class="validation-error-message">Date is required</span>
+    </div>
+  </div>
   <div class="form-group">
     <label class="control-label" >Store               
     <input class="form-control" formControlName="storeName" [typeahead]="stores" typeaheadOptionField="name"
-    (typeaheadOnSelect)="addStore($event)"></label>   
+    (typeaheadOnSelect)="addStore($event)"></label>    
+    <div ngxErrors="storeId">
+      <div ngxError="required" [when]="['dirty', 'touched']">
+        <span class="validation-error-message">Store is required</span>
+      </div>
     </div>
+  </div>
     <button type="button" (click)="onAddThing('store')">Add Store</button>
 </form>
 <button class="btn btn-primary" (click)="addOrder()">Add Item</button>
+  <div *ngIf="form.errors && form.error.emptyItems && form.dirty && form.touched">
+    <span class="validation-error-message">Must have at least 1 item</span>
+  </div>
 <sd-order-list [parentForm]="form.controls.items" [brands]="brands" [types]="types" [sections]="sections" [tags]="tags"
   [products]="products" (addThing)="onAddThing($event)" (removeOrder)="onRemoveOrder($event)">
 </sd-order-list>

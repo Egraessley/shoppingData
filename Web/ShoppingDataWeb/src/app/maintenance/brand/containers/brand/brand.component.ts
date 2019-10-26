@@ -8,6 +8,7 @@ import { getBrandEntities, BrandCreated, BrandSaved, BrandDeleted } from '../../
 import { BrandFormComponent } from '../../components/brand-form/brand-form.component';
 import { ConfirmModalService } from '../../../../shared/components/confirm-modal/confirm-modal.service';
 import { ConfirmResult } from '../../../../shared/components/confirm-modal/confirm-modal/confirm-modal.component';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sd-brand',
@@ -18,6 +19,8 @@ export class BrandComponent implements OnInit {
 
   brands$: Observable<BrandModel[]>;
 
+  brands: BrandModel[] = [];
+
   constructor(
     private modalService: BsModalService,
     private store: Store<AppState>,
@@ -25,12 +28,13 @@ export class BrandComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.brands$ = this.store.pipe(select(getBrandEntities));
+    this.brands$ = this.store.pipe(select(getBrandEntities),tap(x=>this.brands=x));
   }
 
   onCreate() {
     let modal = this.modalService.show(BrandFormComponent,{
       initialState: {
+        brands: this.brands,
         brand: {
           id: 0,
           name: ''
@@ -46,7 +50,10 @@ export class BrandComponent implements OnInit {
 
   onEdit(oldBrand: BrandModel) {
     let modal = this.modalService.show(BrandFormComponent,{
-      initialState: {brand: oldBrand}
+      initialState: {
+        brands: this.brands,
+        brand: oldBrand
+      }
     });
 
     modal.content.save.subscribe((brand:BrandModel)=>{

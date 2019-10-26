@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import * as fromModels from '../../../../shared/models';
 
@@ -31,6 +31,12 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit() {
       this.form.patchValue(this.product);
+      this.form.controls.name.setValidators([Validators.required,this.uniqueName]);
+  }
+
+  uniqueName: ValidatorFn = (control: FormControl): ValidationErrors | null => {
+    let product = this.products.find(x=>x.name.toLowerCase() === control.value.toLowerCase());
+    return product && product.id !==this.product.id ? {uniqueName: true} : null;
   }
 
 

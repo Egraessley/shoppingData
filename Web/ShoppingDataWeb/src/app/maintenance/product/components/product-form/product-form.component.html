@@ -10,29 +10,49 @@
       <label class="control-label" i18n="@@nameLabel">Product name
         <input id="name" class="form-control" formControlName="name" />
       </label>
+      <div ngxErrors="name">
+        <div ngxError="required" [when]="['dirty', 'touched']">
+          <span class="validation-error-message">Brand Name is required</span>
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <label  class="control-label" i18n="@@nameLabel">Brand
-        <select  class="form-control" formControlName="brandId">
+      <label class="control-label" i18n="@@nameLabel">Brand
+        <select class="form-control" formControlName="brandId">
           <option [ngValue]="null">Select one</option>
           <option *ngFor="let brand of brands" [ngValue]="brand.id">{{brand.name}}</option>
         </select>
       </label>
-      <div class="form-group">
-        <label class="control-label" i18n="@@nameLabel">Section
-          <select  class="form-control" formControlName="sectionId">
-            <option [ngValue]="null">Select one</option>
-            <option *ngFor="let section of sections" [ngValue]="section.id">{{section.name}}</option>
-          </select>
-        </label>
+      <div ngxErrors="brandId">
+        <div ngxError="required" [when]="['dirty', 'touched']">
+          <span class="validation-error-message">Brand is required</span>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="control-label" i18n="@@nameLabel">Type
-          <select  class="form-control" formControlName="typeId">
-            <option [ngValue]="null">Select one</option>
-            <option *ngFor="let type of types" [ngValue]="type.id">{{type.name}}</option>
-          </select>
-        </label>
+    </div>
+    <div class="form-group">
+      <label class="control-label" i18n="@@nameLabel">Section
+        <select class="form-control" formControlName="sectionId">
+          <option [ngValue]="null">Select one</option>
+          <option *ngFor="let section of sections" [ngValue]="section.id">{{section.name}}</option>
+        </select>
+      </label>
+      <div ngxErrors="sectionId">
+        <div ngxError="required" [when]="['dirty', 'touched']">
+          <span class="validation-error-message">SEction is required</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" i18n="@@nameLabel">Type
+        <select class="form-control" formControlName="typeId">
+          <option [ngValue]="null">Select one</option>
+          <option *ngFor="let type of types" [ngValue]="type.id">{{type.name}}</option>
+        </select>
+      </label>
+      <div ngxErrors="typeId">
+        <div ngxError="required" [when]="['dirty', 'touched']">
+          <span class="validation-error-message">Type is required</span>
+        </div>
       </div>
     </div>
   </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import { SectionModel } from '../../../../shared/models';
 
@@ -24,6 +24,12 @@ export class SectionFormComponent implements OnInit {
 
   ngOnInit() {
       this.form.patchValue(this.section);
+      this.form.setValidators([Validators.required,this.uniqueName]);
+  }
+
+  uniqueName: ValidatorFn = (control: FormControl): ValidationErrors | null => {
+    let section = this.sections.find(x=>x.name.toLowerCase() === control.value.toLowerCase());
+    return section && section.id !==this.section.id ? {uniqueName: true} : null;
   }
 
 

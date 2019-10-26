@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BrandModel } from '../../../../shared/models';
 
@@ -24,6 +24,7 @@ export class BrandFormComponent implements OnInit {
 
   ngOnInit() {
       this.form.patchValue(this.brand);
+      this.form.controls.name.setValidators([Validators.required,this.uniqueName]);
   }
 
 
@@ -37,6 +38,12 @@ export class BrandFormComponent implements OnInit {
       ...this.form.value
     });
   }
+
+  uniqueName: ValidatorFn = (control: FormControl): ValidationErrors | null => {
+    let brand = this.brands.find(x=>x.name.toLowerCase() === control.value.toLowerCase());
+    return brand && brand.id !==this.brand.id ? {uniqueName: true} : null;
+  }
+
 
   get title(): string {
     return this.exists ? 'Edit' : 'Add';
