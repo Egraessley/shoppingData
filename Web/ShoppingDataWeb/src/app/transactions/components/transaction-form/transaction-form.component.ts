@@ -100,6 +100,7 @@ export class TransactionFormComponent implements OnInit, OnChanges {
 
   setupForm() {
     this.form.controls.date.patchValue(moment(this.transaction.date).toDate());
+    this.form.controls.storeId.patchValue(this.transaction.storeId);
     while ((<FormArray>this.form.controls.items).controls.length) {
       (<FormArray>this.form.controls.items).removeAt(0);
     }

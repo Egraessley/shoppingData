@@ -2,7 +2,7 @@ import {ExpressController} from "../utils/ExpressDecorators";
 import * as _ from "lodash";
 import BaseController from "./BaseController";
 import { getConnection } from "typeorm";
-import { Transactions, OrderItemsToTag, OrderItems, Products, Tags } from "../db/models";
+import { Transactions, OrderItemsToTag, OrderItems, Products, Tags, Stores } from "../db/models";
 import { mappers } from "../db/mappers";
 import { ResultsHelper } from "../utils/ResultsHelper";
 import { TransactionView } from "../db/viewModels";
@@ -69,9 +69,11 @@ export default class TransactionController implements BaseController
             let newTransaction = new Transactions();
             newTransaction.account = res.locals.account;
             await getConnection().transaction(async (m)=>{
+                let store =await m.getRepository(Stores).findOneOrFail(transaction.storeId);
                 newTransaction.id=transaction.id;
                 newTransaction.date=transaction.date;
                 newTransaction.items = [];
+                newTransaction.store = store;
                 await m.getRepository(Transactions).save(newTransaction);
 
                 for(const orderItem of transaction.items)
@@ -120,6 +122,7 @@ export default class TransactionController implements BaseController
         try {
             let newModel: TransactionView = req.body;
             await getConnection().transaction(async (m)=>{
+                let store =await m.getRepository(Stores).findOneOrFail(newModel.storeId);
                 let transaction = await m.getRepository(Transactions).findOne(newModel.id,{
                     relations: [
                         'store',
@@ -131,6 +134,7 @@ export default class TransactionController implements BaseController
                     ]
                 });
                 transaction.date = newModel.date;
+                transaction.store = store;
                 await m.getRepository(Transactions).save(transaction);
 
                 for(let orderItem of transaction.items) {
