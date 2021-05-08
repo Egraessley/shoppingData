@@ -35,7 +35,7 @@
     "simple-ssh": "^1.0.0",
     "socket.io": "^2.0.4",
     "socketio-jwt": "^4.5.0",
-    "typeorm": "^0.2.7",
+    "typeorm": "^0.2.25",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
