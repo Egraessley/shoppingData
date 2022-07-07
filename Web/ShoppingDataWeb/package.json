@@ -33,7 +33,7 @@
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng-drag-drop": "^5.0.0",
     "ngrx-store-freeze": "^0.2.4",
     "ngx-bootstrap": "^5.1.0",
