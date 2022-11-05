@@ -18,7 +18,7 @@
     "express-print-routes": "^1.0.0",
     "express-remove-route": "^1.0.0",
     "externalip": "^1.0.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-live-server": "0.0.31",
     "gulp-run-command": "0.0.9",
     "gulp-typescript": "^3.2.4",
