@@ -23,7 +23,7 @@
     "gulp-run-command": "0.0.9",
     "gulp-typescript": "^3.2.4",
     "http": "^0.0.0",
-    "jsonwebtoken": "^8.1.1",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.20.1",
     "mssql": "^4.1.0",
     "mysql": "^2.12.0",
